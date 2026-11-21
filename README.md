@@ -81,6 +81,44 @@ Ou abra o projeto no IntelliJ IDEA como projeto Maven e execute a classe `br.com
   - `VendaBuilder`: disponibiliza os métodos `comCliente`, `adicionarItem`, `comEstrategia`, `comObservacao` e `build`.
   - `Venda`: objeto final criado pelo `VendaBuilder`.
 
+## Fluxo de Contribuição (Branches e Pull Requests)
+
+A branch `main` é protegida e recebe alterações apenas via **Pull Request**.
+
+### Branches das features (Equipe)
+
+- `feature/strategy`: implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`)
+- `feature/builder`: implementação de `ItemVenda`, `Venda` e `VendaBuilder`
+- `feature/cli`: implementação do fluxo no console (`Main`)
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b feature/<nome-da-feature>
+
+# Após implementar e atualizar o README:
+git add .
+git commit -m "feat: descrição da alteração"
+git push -u origin feature/<nome-da-feature>
+```
+
+Depois do push, abra um **Pull Request** no GitHub para a branch `main` referenciando a issue correspondente (ex.: `Closes #1`).
+
+### Contribuição via Fork
+
+Para equipes que forem estender o projeto:
+
+1. Faça um **Fork** deste repositório no GitHub.
+2. Clone o seu fork e crie uma branch para a extensão (ex.: `feature/extensao-farmacia`):
+
+```bash
+git clone https://github.com/<SEU_USUARIO>/farmacia-design-patterns.git
+cd farmacia-design-patterns
+git checkout -b feature/extensao-farmacia
+```
+
+3. Faça os commits da equipe, envie a branch para o seu fork (`git push -u origin feature/extensao-farmacia`) e abra um **Pull Request** do fork para a branch `main` deste repositório.
+
 ## Contribuições dos Integrantes
 
 | Integrante | Usuário GitHub | Contribuição Principal |
