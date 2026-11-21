@@ -1,0 +1,96 @@
+# Farmácia - Design Patterns (Strategy + Builder)
+
+Aplicação Java de console para um sistema simples de farmácia, desenvolvida para o Projeto Final. O projeto modela as entidades **Produto**, **Cliente** e **Venda**, aplicando os padrões de projeto **Strategy** e **Builder**.
+
+## Descrição do Sistema
+
+O sistema permite gerenciar um fluxo simples de vendas de farmácia pelo terminal, mantendo os dados em memória durante a execução:
+
+- **Produto**: representa os itens disponíveis (`id`, `nome`, `preco`).
+- **Cliente**: representa os compradores (`id`, `nome`, `cpf`).
+- **Venda**: relaciona um `Cliente` aos itens comprados (`ItemVenda` com `Produto` e quantidade), usa o padrão **Builder** na montagem e o padrão **Strategy** no cálculo do valor final.
+
+## Tecnologias e Pré-requisitos
+
+- Java 21 (LTS)
+- Apache Maven 3.9+ (ou Maven integrado ao IntelliJ IDEA)
+- Git
+
+## Estrutura do Projeto
+
+```text
+src/main/java/br/com/farmacia/
+├── app/
+│   └── Main.java
+├── model/
+│   ├── Produto.java
+│   ├── Cliente.java
+│   ├── ItemVenda.java
+│   └── Venda.java
+├── strategy/
+│   ├── EstrategiaCalculo.java
+│   ├── CalculoPadrao.java
+│   └── CalculoComTaxaEntrega.java
+└── builder/
+    └── VendaBuilder.java
+```
+
+## Instruções de Execução
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/NaiiiLr/farmacia-design-patterns.git
+cd farmacia-design-patterns
+```
+
+Execute pelo terminal com Maven:
+
+```bash
+mvn compile exec:java
+```
+
+Ou abra o projeto no IntelliJ IDEA como projeto Maven e execute a classe `br.com.farmacia.app.Main`.
+
+## Exemplos de Uso
+
+```text
+=== Sistema de Farmácia ===
+1. Listar produtos
+2. Listar clientes
+3. Registrar venda
+4. Listar vendas realizadas
+0. Sair
+```
+
+## Patterns Utilizados
+
+### Strategy (`br.com.farmacia.strategy`)
+
+- **Problema resolvido:** evita condicionais (`if/else` ou `switch`) dentro de `Venda` para calcular o valor final, permitindo trocar a regra de cálculo sem alterar a classe de venda.
+- **Classes envolvidas:**
+  - `EstrategiaCalculo`: interface que define `calcularTotal(double subtotal)` e `getDescricao()`.
+  - `CalculoPadrao`: retorna o valor do subtotal sem alterações.
+  - `CalculoComTaxaEntrega`: soma uma taxa fixa de entrega ao subtotal.
+  - `Venda`: recebe uma `EstrategiaCalculo` e delega o cálculo do total para ela.
+
+### Builder (`br.com.farmacia.builder`)
+
+- **Problema resolvido:** organiza a montagem de objetos `Venda` passo a passo (cliente, itens, estratégia de cálculo e observação opcional), evitando construtores longos e concentrando as validações antes de criar a instância.
+- **Classes envolvidas:**
+  - `VendaBuilder`: disponibiliza os métodos `comCliente`, `adicionarItem`, `comEstrategia`, `comObservacao` e `build`.
+  - `Venda`: objeto final criado pelo `VendaBuilder`.
+
+## Contribuições dos Integrantes
+
+| Integrante | Usuário GitHub | Contribuição Principal |
+| :--- | :--- | :--- |
+| **Ian** | `@NaiiiLr` | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
+| **[Nome Integrante 2]** | `@usuario2` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
+| **[Nome Integrante 3]** | `@usuario3` | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
+| **[Nome Integrante 4]** | `@usuario4` | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
+
+## Declaração de Uso de IA
+
+- **Modelo utilizado:** Gemini 4 Neon.
+- **Partes em que foi utilizada:** planejamento da estrutura do projeto, estrutura do `README.md`.
