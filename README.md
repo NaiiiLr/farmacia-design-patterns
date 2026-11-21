@@ -87,9 +87,9 @@ A branch `main` é protegida e recebe alterações apenas via **Pull Request**.
 
 ### Branches das features (Equipe)
 
-- `feature/strategy`: implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`)
-- `feature/builder`: implementação de `ItemVenda`, `Venda` e `VendaBuilder`
-- `feature/cli`: implementação do fluxo no console (`Main`)
+- `feature/strategy` ([Issue #1](https://github.com/NaiiiLr/farmacia-design-patterns/issues/1)): implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`)
+- `feature/builder` ([Issue #2](https://github.com/NaiiiLr/farmacia-design-patterns/issues/2)): implementação de `ItemVenda`, `Venda` e `VendaBuilder`
+- `feature/cli` ([Issue #3](https://github.com/NaiiiLr/farmacia-design-patterns/issues/3)): implementação do fluxo no console (`Main`)
 
 ```bash
 git checkout main
@@ -106,7 +106,7 @@ Depois do push, abra um **Pull Request** no GitHub para a branch `main` referenc
 
 ### Contribuição via Fork
 
-Para equipes que forem estender o projeto:
+Para equipes que forem estender o projeto ([Issue #4](https://github.com/NaiiiLr/farmacia-design-patterns/issues/4)):
 
 1. Faça um **Fork** deste repositório no GitHub.
 2. Clone o seu fork e crie uma branch para a extensão (ex.: `feature/extensao-farmacia`):
@@ -117,7 +117,7 @@ cd farmacia-design-patterns
 git checkout -b feature/extensao-farmacia
 ```
 
-3. Faça os commits da equipe, envie a branch para o seu fork (`git push -u origin feature/extensao-farmacia`) e abra um **Pull Request** do fork para a branch `main` deste repositório.
+3. Faça os commits da equipe, envie a branch para o seu fork (`git push -u origin feature/extensao-farmacia`) e abra um **Pull Request** do fork para a branch `main` deste repositório referenciando `Closes #4`.
 
 ## Contribuições dos Integrantes
 
