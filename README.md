@@ -70,9 +70,19 @@ Ou abra o projeto no IntelliJ IDEA como projeto Maven e execute a classe `br.com
 - **Problema resolvido:** evita condicionais (`if/else` ou `switch`) dentro de `Venda` para calcular o valor final, permitindo trocar a regra de cálculo sem alterar a classe de venda.
 - **Classes envolvidas:**
   - `EstrategiaCalculo`: interface que define `calcularTotal(double subtotal)` e `getDescricao()`.
-  - `CalculoPadrao`: retorna o valor do subtotal sem alterações.
-  - `CalculoComTaxaEntrega`: soma uma taxa fixa de entrega ao subtotal.
+  - `CalculoPadrao`: venda no balcão, retorna o subtotal sem acréscimo.
+  - `CalculoComTaxaEntrega`: soma uma taxa fixa de entrega ao subtotal. A taxa pode ser informada no construtor (não pode ser negativa) ou usar o valor padrão de R$ 10,00.
   - `Venda`: recebe uma `EstrategiaCalculo` e delega o cálculo do total para ela.
+- **Como adicionar uma nova regra:** criar uma classe que implemente `EstrategiaCalculo` e passá-la para o `VendaBuilder` com `comEstrategia(...)`. Nenhuma outra classe precisa ser alterada.
+
+```java
+EstrategiaCalculo balcao = new CalculoPadrao();
+balcao.calcularTotal(50.0);          // 50.0
+
+EstrategiaCalculo entrega = new CalculoComTaxaEntrega();
+entrega.calcularTotal(50.0);         // 60.0
+entrega.getDescricao();              // "Entrega (taxa de R$ 10,00)"
+```
 
 ### Builder (`br.com.farmacia.builder`)
 
