@@ -1,16 +1,47 @@
 package br.com.farmacia.model;
 
-/**
- * TODO (Integrante 3 - Builder e Venda):
- * Representar um item dentro de uma venda (relação entre Produto e quantidade).
- *
- * Atributos e métodos esperados:
- * - Produto produto (obrigatório, não nulo)
- * - int quantidade (obrigatória, maior que zero)
- * - Getters para produto e quantidade
- * - calcularSubtotal(): retornar produto.getPreco() * quantidade
- * - toString(): exibição legível do item (nome do produto, quantidade e subtotal)
- */
+import java.util.Locale;
+
 public class ItemVenda {
-    // TODO: implementar atributos, construtor com validações, getters, calcularSubtotal() e toString()
+
+    private final Produto produto;
+    private final int quantidade;
+
+    public ItemVenda(Produto produto, int quantidade) {
+        if (produto == null) {
+            throw new IllegalArgumentException("O produto é obrigatório.");
+        }
+
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException(
+                "A quantidade deve ser maior que zero."
+            );
+        }
+
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public double calcularSubtotal() {
+        return produto.getPreco() * quantidade;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            Locale.forLanguageTag("pt-BR"),
+            "%s | Quantidade: %d | Subtotal: R$ %.2f",
+            produto.getNome(),
+            quantidade,
+            calcularSubtotal()
+        );
+    }
 }
