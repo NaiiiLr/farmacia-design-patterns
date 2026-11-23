@@ -124,7 +124,7 @@ git checkout -b feature/extensao-farmacia
 | Integrante | Usuário GitHub | Contribuição Principal |
 | :--- | :--- | :--- |
 | **Ian** | `@NaiiiLr` | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
-| **[Nome Integrante 2]** | `@usuario2` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
+| **Cristoffer** | `@cristoffer21` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
 | **[Nome Integrante 3]** | `@usuario3` | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
 | **[Nome Integrante 4]** | `@usuario4` | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
 
