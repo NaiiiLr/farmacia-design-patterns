@@ -1,14 +1,38 @@
 package br.com.farmacia.strategy;
 
-/**
- * TODO (Integrante 2 - Pattern Strategy):
- * Implementar a interface EstrategiaCalculo.
- *
- * Comportamento esperado:
- * - Receber a taxa de entrega no construtor (validando que não seja negativa) ou usar um valor padrão (ex.: 10.0).
- * - calcularTotal(double subtotal): retornar subtotal + taxaEntrega.
- * - getDescricao(): retornar uma descrição informando a taxa (ex.: "Entrega (taxa de R$ 10,00)").
- */
-public class CalculoComTaxaEntrega {
-    // TODO: implementar EstrategiaCalculo com taxa fixa de entrega
+import java.util.Locale;
+
+public class CalculoComTaxaEntrega implements EstrategiaCalculo {
+
+    public static final double TAXA_PADRAO = 10.0;
+
+    private final double taxaEntrega;
+
+    public CalculoComTaxaEntrega() {
+        this(TAXA_PADRAO);
+    }
+
+    public CalculoComTaxaEntrega(double taxaEntrega) {
+        if (taxaEntrega < 0) {
+            throw new IllegalArgumentException("A taxa de entrega não pode ser negativa.");
+        }
+        this.taxaEntrega = taxaEntrega;
+    }
+
+    public double getTaxaEntrega() {
+        return taxaEntrega;
+    }
+
+    @Override
+    public double calcularTotal(double subtotal) {
+        if (subtotal < 0) {
+            throw new IllegalArgumentException("O subtotal não pode ser negativo.");
+        }
+        return subtotal + taxaEntrega;
+    }
+
+    @Override
+    public String getDescricao() {
+        return String.format(Locale.forLanguageTag("pt-BR"), "Entrega (taxa de R$ %.2f)", taxaEntrega);
+    }
 }

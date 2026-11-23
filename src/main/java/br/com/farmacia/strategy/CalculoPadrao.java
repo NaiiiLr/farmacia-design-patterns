@@ -1,13 +1,17 @@
 package br.com.farmacia.strategy;
 
-/**
- * TODO (Integrante 2 - Pattern Strategy):
- * Implementar a interface EstrategiaCalculo.
- *
- * Comportamento esperado:
- * - calcularTotal(double subtotal): retornar o próprio subtotal sem acréscimo.
- * - getDescricao(): retornar uma descrição curta (ex.: "Cálculo Padrão (Balcão)").
- */
-public class CalculoPadrao {
-    // TODO: implementar EstrategiaCalculo
+public class CalculoPadrao implements EstrategiaCalculo {
+
+    @Override
+    public double calcularTotal(double subtotal) {
+        if (subtotal < 0) {
+            throw new IllegalArgumentException("O subtotal não pode ser negativo.");
+        }
+        return subtotal;
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Cálculo Padrão (Balcão)";
+    }
 }
