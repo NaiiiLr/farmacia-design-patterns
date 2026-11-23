@@ -86,10 +86,29 @@ entrega.getDescricao();              // "Entrega (taxa de R$ 10,00)"
 
 ### Builder (`br.com.farmacia.builder`)
 
-- **Problema resolvido:** organiza a montagem de objetos `Venda` passo a passo (cliente, itens, estratégia de cálculo e observação opcional), evitando construtores longos e concentrando as validações antes de criar a instância.
+- **Problema resolvido:** organiza a construção de uma `Venda` passo a passo, evitando um construtor longo e garantindo que o objeto seja criado somente quando os dados obrigatórios estiverem preenchidos.
 - **Classes envolvidas:**
-  - `VendaBuilder`: disponibiliza os métodos `comCliente`, `adicionarItem`, `comEstrategia`, `comObservacao` e `build`.
-  - `Venda`: objeto final criado pelo `VendaBuilder`.
+    - `ItemVenda`: relaciona um `Produto` a uma quantidade maior que zero e calcula o subtotal do item.
+    - `Venda`: mantém o cliente, uma lista imutável de itens, a estratégia de cálculo e uma observação opcional.
+    - `VendaBuilder`: oferece os métodos fluentes `comCliente`, `adicionarItem`, `comEstrategia`, `comObservacao` e `build`.
+- **Validações realizadas:**
+    - O produto não pode ser nulo.
+    - A quantidade deve ser maior que zero.
+    - A venda deve possuir um cliente.
+    - A venda deve possuir pelo menos um item.
+    - A venda deve possuir uma estratégia de cálculo.
+- **Imutabilidade:** `Venda` cria uma cópia imutável da lista de itens recebida do Builder.
+
+```java
+Venda venda = new VendaBuilder()
+        .comCliente(cliente)
+        .adicionarItem(produto, 2)
+        .comEstrategia(new CalculoPadrao())
+        .comObservacao("Retirada no balcão")
+        .build();
+
+System.out.println(venda);
+```
 
 ## Fluxo de Contribuição (Branches e Pull Requests)
 
@@ -131,12 +150,12 @@ git checkout -b feature/extensao-farmacia
 
 ## Contribuições dos Integrantes
 
-| Integrante | Usuário GitHub | Contribuição Principal |
-| :--- | :--- | :--- |
-| **Ian** | `@NaiiiLr` | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
-| **Cristoffer** | `@cristoffer21` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
-| **[Nome Integrante 3]** | `@usuario3` | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
-| **[Nome Integrante 4]** | `@usuario4` | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
+| Integrante              | Usuário GitHub  | Contribuição Principal |
+|:------------------------|:----------------| :--- |
+| **Ian**                 | `@NaiiiLr`      | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
+| **Cristoffer**          | `@cristoffer21` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
+| **Ryan**                | `@ryancandeu`   | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
+| **[Nome Integrante 4]** | `@usuario4`     | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
 
 ## Declaração de Uso de IA
 
