@@ -40,7 +40,7 @@ src/main/java/br/com/farmacia/
 Clone o repositório:
 
 ```bash
-git clone https://github.com/NaiiiLr/farmacia-design-patterns.git
+git clone [https://github.com/NaiiiLr/farmacia-design-patterns.git](https://github.com/NaiiiLr/farmacia-design-patterns.git)
 cd farmacia-design-patterns
 ```
 
@@ -57,10 +57,59 @@ Ou abra o projeto no IntelliJ IDEA como projeto Maven e execute a classe `br.com
 ```text
 === Sistema de Farmácia ===
 1. Listar produtos
-2. Listar clientes
-3. Registrar venda
-4. Listar vendas realizadas
+2. Cadastrar produto
+3. Listar clientes
+4. Cadastrar cliente
+5. Registrar venda
+6. Listar vendas realizadas
 0. Sair
+Escolha uma opção: 5
+--- Registrar Nova Venda ---
+
+--- Clientes Cadastrados ---
+#1 - Ana Paula Souza (CPF: 111.222.333-44)
+#2 - Carlos Eduardo Lima (CPF: 555.666.777-88)
+#3 - Mariana Rocha (CPF: 999.888.777-66)
+Informe o ID do cliente: 1
+
+--- Produtos Disponíveis ---
+#1 - Dipirona 500mg (R$ 8,50)
+#2 - Paracetamol 750mg (R$ 12,00)
+#3 - Vitamina C 1g (R$ 24,90)
+#4 - Protetor Solar FPS 50 (R$ 65,00)
+Informe o ID do produto: 1
+Informe a quantidade: 2
+Item adicionado com sucesso!
+Deseja adicionar outro produto? (s/n): s
+
+--- Produtos Disponíveis ---
+#1 - Dipirona 500mg (R$ 8,50)
+#2 - Paracetamol 750mg (R$ 12,00)
+#3 - Vitamina C 1g (R$ 24,90)
+#4 - Protetor Solar FPS 50 (R$ 65,00)
+Informe o ID do produto: 3
+Informe a quantidade: 1
+Item adicionado com sucesso!
+Deseja adicionar outro produto? (s/n): n
+
+Escolha a forma de cálculo:
+1. Cálculo Padrão (Balcão)
+2. Entrega (taxa padrão de R$ 10,00)
+3. Entrega (informar taxa personalizada)
+Opção de cálculo: 2
+Observação (opcional, pressione Enter para pular): Entregar na portaria
+
+Venda registrada com sucesso!
+----------------------------
+Cliente: #1 - Ana Paula Souza (CPF: 111.222.333-44)
+Itens:
+- Dipirona 500mg | Quantidade: 2 | Subtotal: R$ 17,00
+- Vitamina C 1g | Quantidade: 1 | Subtotal: R$ 24,90
+Subtotal: R$ 41,90
+Estratégia: Entrega (taxa de R$ 10,00)
+Total: R$ 51,90
+Observação: Entregar na portaria
+----------------------------
 ```
 
 ## Patterns Utilizados
@@ -69,10 +118,10 @@ Ou abra o projeto no IntelliJ IDEA como projeto Maven e execute a classe `br.com
 
 - **Problema resolvido:** evita condicionais (`if/else` ou `switch`) dentro de `Venda` para calcular o valor final, permitindo trocar a regra de cálculo sem alterar a classe de venda.
 - **Classes envolvidas:**
-  - `EstrategiaCalculo`: interface que define `calcularTotal(double subtotal)` e `getDescricao()`.
-  - `CalculoPadrao`: venda no balcão, retorna o subtotal sem acréscimo.
-  - `CalculoComTaxaEntrega`: soma uma taxa fixa de entrega ao subtotal. A taxa pode ser informada no construtor (não pode ser negativa) ou usar o valor padrão de R$ 10,00.
-  - `Venda`: recebe uma `EstrategiaCalculo` e delega o cálculo do total para ela.
+    - `EstrategiaCalculo`: interface que define `calcularTotal(double subtotal)` e `getDescricao()`.
+    - `CalculoPadrao`: venda no balcão, retorna o subtotal sem acréscimo.
+    - `CalculoComTaxaEntrega`: soma uma taxa fixa de entrega ao subtotal. A taxa pode ser informada no construtor (não pode ser negativa) ou usar o valor padrão de R$ 10,00.
+    - `Venda`: recebe uma `EstrategiaCalculo` e delega o cálculo do total para ela.
 - **Como adicionar uma nova regra:** criar uma classe que implemente `EstrategiaCalculo` e passá-la para o `VendaBuilder` com `comEstrategia(...)`. Nenhuma outra classe precisa ser alterada.
 
 ```java
@@ -141,7 +190,7 @@ Para equipes que forem estender o projeto ([Issue #4](https://github.com/NaiiiLr
 2. Clone o seu fork e crie uma branch para a extensão (ex.: `feature/extensao-farmacia`):
 
 ```bash
-git clone https://github.com/<SEU_USUARIO>/farmacia-design-patterns.git
+git clone [https://github.com/](https://github.com/)<SEU_USUARIO>/farmacia-design-patterns.git
 cd farmacia-design-patterns
 git checkout -b feature/extensao-farmacia
 ```
@@ -150,12 +199,12 @@ git checkout -b feature/extensao-farmacia
 
 ## Contribuições dos Integrantes
 
-| Integrante              | Usuário GitHub  | Contribuição Principal |
-|:------------------------|:----------------| :--- |
-| **Ian**                 | `@NaiiiLr`      | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
-| **Cristoffer**          | `@cristoffer21` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
-| **Ryan**                | `@ryancandeu`   | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
-| **[Nome Integrante 4]** | `@usuario4`     | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
+| Integrante     | Usuário GitHub  | Contribuição Principal |
+|:---------------|:----------------|:-----------------------|
+| **Ian**        | `@NaiiiLr`      | Setup do projeto (`pom.xml`, `.gitignore`, `.editorconfig`), `README.md` base e entidades `Produto` e `Cliente`. |
+| **Cristoffer** | `@cristoffer21` | Implementação do padrão Strategy (`EstrategiaCalculo`, `CalculoPadrao`, `CalculoComTaxaEntrega`) e documentação do Strategy. |
+| **Ryan**       | `@ryancandeu`   | Implementação do padrão Builder (`ItemVenda`, `Venda`, `VendaBuilder`) e documentação do Builder. |
+| **Nathan**     | `@NathanHF`     | Implementação do fluxo no console (`Main`) e exemplos de uso no `README.md`. |
 
 ## Declaração de Uso de IA
 
