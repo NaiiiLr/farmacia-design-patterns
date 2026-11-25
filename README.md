@@ -210,3 +210,8 @@ git checkout -b feature/extensao-farmacia
 
 - **Modelo utilizado:** Gemini 4 Neon.
 - **Partes em que foi utilizada:** planejamento da estrutura do projeto, estrutura do `README.md`.
+
+
+## Extensão  em andamento...
+
+Equipe de cantina: Gabriel Minatto, Lorenzo, Anderson, Isabela
