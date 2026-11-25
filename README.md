@@ -213,3 +213,5 @@ git checkout -b feature/extensao-farmacia
 
 
 ## Extensão  em andamento...
+
+Equipe de cantina: Gabriel Minatto, Lorenzo, Anderson, Isabela
